@@ -1,0 +1,163 @@
+homeassistant:
+  name: Home
+  latitude: !secret home_lat
+  longitude: !secret home_long
+  elevation: !secret home_altitude
+  unit_system: imperial
+  time_zone: America/Chicago
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+# introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  api_password: !secret http_password
+  base_url: !secret base_url
+  ssl_certificate: !secret ssl_cert
+  ssl_key: !secret ssl_key
+  
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+mqtt:
+  broker: !secret CLOUDMQTT_SERVER
+  port: !secret CLOUDMQTT_PORT
+  username: !secret CLOUDMQTT_USER
+  password: !secret CLOUDMQTT_PASSWORD
+  
+device_tracker:
+  - platform: owntracks
+  - platform: ping
+    hosts:
+      brandy: !secret brandy_ip
+ 
+#zwave:
+#  usb_path: /dev/ttyACM0
+
+ecobee:
+  api_key: !secret ecobee_api_key
+
+# Philips hue
+light:
+  - platform: hue
+    host: !secret hue_ip_address
+
+camera:
+  - platform: mjpeg
+    mjpeg_url: !secret cam1_video
+    still_image_url: !secret cam1_image
+    name: Upstairs
+  - platform: mjpeg
+    mjpeg_url: !secret cam3_video
+    still_image_url: !secret cam3_image
+    name: Living Room
+
+tts:
+  - platform: google
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+zone:
+  - name: Work
+    latitude: !secret work_lat
+    longitude: !secret work_long
+    radius: !secret zone_radius
+    icon: mdi:domain
+
+  - name: Home
+    latitude: !secret home_lat
+    longitude: !secret home_long
+    radius: !secret zone_radius
+    icon: mdi:home
+    
+sensor:
+  - platform: wunderground
+    api_key: !secret wunderground_api_key
+    monitored_conditions:
+      - alerts
+      - temp_f
+      - temp_high_1d_f
+      - weather_1d
+      - weather_1h
+      - precip_1d
+      - precip_1d_in
+  - platform: glances
+    name: Home Server
+    host: !secret home_server_ip
+    port: !secret glances_port
+    resources:
+      - 'disk_use_percent'
+      - 'memory_use_percent'
+      - 'swap_use_percent'
+      - 'processor_load'
+  - platform: glances
+    name: Desktop
+    host: !secret desktop_ip
+    port: !secret desktop_glances_port
+    resources:
+      - 'disk_use_percent'
+      - 'memory_use_percent'
+      - 'swap_use_percent'
+      - 'processor_load'
+  - platform: google_wifi
+    name: Google WiFi
+      
+#media_player:
+#  - platform: plex
+  
+notify:
+  - name: notifier
+    platform: html5
+    gcm_api_key: !secret gcm-server-key
+    gcm_sender_id: !secret gcm-sender-id
+
+wemo:
+    
+####################
+## Custom Sensors ##
+####################
+
+binary_sensor:
+  - platform: template
+    sensors:
+      sun_up:
+        friendly_name: "Sun is up"
+        value_template: >-
+          {{ states.sun.sun.attributes.elevation|float > 0 }}
+#      garage_motion:
+#        friendly_name: "Garage Motion"
+#        device_class: motion
+#        value_template: >-
+#          {{ sensor.motion_sensor_burglar|float > 0 }}
+    
+#mqtt:
+  #broker: core-mosquitto
+  #username: !secret MQTT_username
+  #password: !secret MQTT_password

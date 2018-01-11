@@ -1,0 +1,39 @@
+- action:
+  - alias: ''
+    data: {}
+    service: switch.turn_on
+  alias: Turn on the Living Room Lights when I get home
+  condition: []
+  id: '999'
+  trigger:
+  - entity_id: device_tracker.phone_phone
+    event: enter
+    platform: zone
+    zone: zone.home
+- action:
+  - alias: ''
+    data: {}
+    service: light.turn_on
+  - delay: 00:05:00
+  - data: {}
+    service: light.turn_off
+  alias: Turn on the Lights when I get home
+  condition: []
+  id: '1512613072232'
+  trigger:
+  - entity_id: device_tracker.phone_phone
+    event: enter
+    platform: zone
+    zone: zone.home
+- action:
+  - alias: ''
+    data: {}
+    service: light.turn_off
+  alias: Turn off the Lights when I leave Home
+  condition: []
+  id: '1513967584329'
+  trigger:
+  - entity_id: device_tracker.phone_phone
+    event: leave
+    platform: zone
+    zone: zone.home

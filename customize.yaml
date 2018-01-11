@@ -1,0 +1,14 @@
+sensor.google_wifi_current_version:
+  friendly_name: Google WiFi Current Version
+sensor.google_wifi_last_restart:
+  friendly_name: Google WiFi Last Restart
+sensor.google_wifi_status:
+  friendly_name: Google WiFi Status
+sensor.google_wifi_uptime:
+  friendly_name: Google WiFi Uptime
+sensor.google_wifi_new_version:
+  friendly_name: Google WiFi New Version
+device_tracker.phone_phone:
+  friendly_name: Tyler
+device_tracker.brandy:
+  friendly_name: Brandy
