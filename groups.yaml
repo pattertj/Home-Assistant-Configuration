@@ -40,11 +40,13 @@ network:
     - group.desktop  
     - group.wifi 
     
-#zwave:
-#  name: Z-Wave
-# view: yes
-#  entities:
-#    - group.zwavedevices     
+zwave:
+  name: Z-Wave
+  view: yes
+  entities:
+    - group.doorsensorgarage     
+    - group.motionsensorgarage
+    - group.tiltsensorgarage
     
 people:
   name: People
@@ -121,7 +123,20 @@ wifi:
     - sensor.google_wifi_uptime
     - sensor.google_wifi_new_version
     
-#zwavedevices:
-#  name: Devices
-#  entities:
-#    - zwave.aeotec_zw090_zstick_gen5_us
+doorsensorgarage:
+  name: Door Sensor Garage
+  entities:
+    - sensor.door_sensor_garage_access_control
+    - sensor.door_sensor_garage_burglar
+    
+motionsensorgarage:
+  name: Motion Sensor Garage
+  entities:
+    - sensor.motion_sensor_garage_alarm_level
+    - sensor.motion_sensor_garage_burglar
+
+tiltsensorgarage:
+  name: Tilt Sensor Garage
+  entities:
+    - sensor.tilt_sensor_garage_access_control
+    - sensor.tilt_sensor_garage_burglar

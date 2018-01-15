@@ -56,8 +56,8 @@ device_tracker:
     hosts:
       brandy: !secret brandy_ip
  
-#zwave:
-#  usb_path: /dev/ttyACM0
+zwave:
+  usb_path: /dev/ttyACM0
 
 ecobee:
   api_key: !secret ecobee_api_key
