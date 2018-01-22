@@ -1,6 +1,7 @@
 - action:
   - alias: ''
-    data: {}
+    data:
+      entity_id: switch.wemo_mini
     service: switch.turn_on
   alias: Turn on the Living Room Lights when I get home
   condition: []
@@ -37,3 +38,52 @@
     event: leave
     platform: zone
     zone: zone.home
+- action:
+  - data:
+      entity_id: switch.light_switch_garage_switch
+    service: switch.turn_off
+  alias: Turn off the Garage Light
+  condition:
+  - condition: state
+    entity_id: sensor.garage_door
+    state: Closed
+  - condition: state
+    entity_id: sensor.garage_door_tilt
+    state: Closed
+  - condition: state
+    entity_id: sensor.garage_motion
+    state: No Motion
+  id: '1516566420558'
+  trigger:
+  - entity_id: sensor.garage_door
+    from: Open
+    platform: state
+    to: Closed
+  - entity_id: sensor.garage_door_tilt
+    from: Open
+    platform: state
+    to: Closed
+  - entity_id: sensor.garage_motion
+    from: Motion
+    platform: state
+    to: No Motion
+- action:
+  - data:
+      entity_id: switch.light_switch_garage_switch
+    service: switch.turn_on
+  alias: Turn on the Garage Light
+  condition: []
+  id: '1516566420559'
+  trigger:
+  - entity_id: sensor.garage_door
+    from: Closed
+    platform: state
+    to: Open
+  - entity_id: sensor.garage_door_tilt
+    from: Closed
+    platform: state
+    to: Open
+  - entity_id: sensor.garage_motion
+    from: No Motion
+    platform: state
+    to: Motion

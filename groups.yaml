@@ -1,36 +1,20 @@
+#############
+### Views ###
+#############
+
 default_view:
   name: Home
   view: yes
   entities:
-    - group.people
+    - device_tracker.phone_phone
+    - device_tracker.brandy
+    - group.hallway
+    - group.livingroom
+    - group.master
+    - group.porch
+    - group.garage
+    - group.basement
     - group.weather
-
-cameras:
-  name: Cameras
-  view: yes
-  entities:
-    - group.cams
-
-interior:
-  name: Interior
-  view: yes
-  entities:
-    - group.interiorlights
-    - group.temperature
-    - group.rooms
-    
-exterior:
-  name: Exterior
-  view: yes
-  entities:
-    - group.lights
-    - group.weather
-
-#entertainment:
-#  name: Entertainment
-#  view: yes
-#  entities:
-#    - group.appletv  
 
 network:
   name: Network
@@ -39,66 +23,29 @@ network:
     - group.homeserver  
     - group.desktop  
     - group.wifi 
-    
-zwave:
-  name: Z-Wave
-  view: yes
-  entities:
-    - group.doorsensorgarage     
-    - group.motionsensorgarage
-    - group.tiltsensorgarage
-    
-people:
-  name: People
-  entities:
-    - device_tracker.phone_phone
-    - device_tracker.brandy
 
-rooms:
-  name: Rooms
-  entities:
-    - binary_sensor.living_room_occupancy
-    - binary_sensor.bedroom_occupancy
-    - binary_sensor.hallway_occupancy
-    - binary_sensor.downstairs_occupancy
+#############
+### Other ###
+#############
 
 weather:
   name: Weather
   entities:
-    - sensor.pws_alerts
     - sensor.pws_temp_f
     - sensor.pws_weather_1d
     - sensor.pws_temp_high_1d_f
     - sensor.pws_precip_1d
     - sensor.pws_precip_1d_in
-
-lights:
-  name: Lights
-  entities:
-    - light.porch_light
-    - light.stoop
     
-interiorlights:
-  name: Lights
-  entities:
-    - switch.wemo_mini
-
-cams:
+cameras:
   name: Cameras
   entities:
-    - camera.upstairs
     - camera.living_room
-    
-temperature:
-  name: Temperature
-  entities:
-    - climate.hallway
-    
-#appletv:
-#  name: Apple TV
-#  entities:
-#    - media_player.apple_tv
-#    - media_player.plex_web_chrome
+    - camera.upstairs
+
+#######################
+### Network Devices ###
+#######################
     
 homeserver:
   name: Home Server
@@ -122,21 +69,47 @@ wifi:
     - sensor.google_wifi_status
     - sensor.google_wifi_uptime
     - sensor.google_wifi_new_version
-    
-doorsensorgarage:
-  name: Door Sensor Garage
-  entities:
-    - sensor.door_sensor_garage_access_control
-    - sensor.door_sensor_garage_burglar
-    
-motionsensorgarage:
-  name: Motion Sensor Garage
-  entities:
-    - sensor.motion_sensor_garage_alarm_level
-    - sensor.motion_sensor_garage_burglar
 
-tiltsensorgarage:
-  name: Tilt Sensor Garage
+#############
+### Rooms ###
+#############
+    
+garage:
+  name: Garage
   entities:
-    - sensor.tilt_sensor_garage_access_control
-    - sensor.tilt_sensor_garage_burglar
+    - sensor.garage_door
+    - sensor.garage_door_tilt
+    - sensor.garage_motion
+    - switch.light_switch_garage_switch 
+    
+    
+livingroom:
+  name: Living Room
+  entities:
+    - binary_sensor.living_room_occupancy
+    - sensor.living_room_temperature
+    - switch.wemo_mini
+    
+hallway:
+  name: Hallway
+  entities:
+    - binary_sensor.hallway_occupancy
+    - climate.hallway
+
+porch:
+  name: Porch
+  entities:
+    - light.porch_light
+    - light.stoop
+    
+basement:
+  name: Basement
+  entities:
+    - binary_sensor.downstairs_occupancy
+    - sensor.downstairs_temperature
+    
+master:
+  name: Master Bedroom
+  entities:
+    - binary_sensor.bedroom_occupancy
+    - sensor.bedroom_temperature

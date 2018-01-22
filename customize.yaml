@@ -12,3 +12,7 @@ device_tracker.phone_phone:
   friendly_name: Tyler
 device_tracker.brandy:
   friendly_name: Brandy
+switch.wemo_mini:
+  friendly_name: Living Room Lights
+switch.light_switch_garage_switch:
+  friendly_name: Garage Lights
