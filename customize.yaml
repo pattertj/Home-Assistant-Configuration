@@ -16,3 +16,9 @@ switch.wemo_mini:
   friendly_name: Living Room Lights
 switch.light_switch_garage_switch:
   friendly_name: Garage Lights
+sensor.garage_door:
+  friendly_name: Garage Door
+sensor.garage_door_tilt:
+  friendly_name: Garage Door Tilt
+sensor.garage_door_motion:
+  friendly_name: Garage Motion

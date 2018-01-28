@@ -144,13 +144,19 @@ sensor:
         friendly_name: "Garage Motion"
         value_template: '{% if is_state("sensor.motion_sensor_garage_burglar", "0") %}Clear{%-elif is_state("sensor.motion_sensor_garage_burglar", "254") %}Clear{% else %}Occupied{% endif %}'
          
-notify:
-  - name: notifier
-    platform: html5
-    gcm_api_key: !secret gcm-server-key
-    gcm_sender_id: !secret gcm-sender-id
-
 wemo:
+
+notify:
+  - name: Slack_Notifier
+    platform: slack
+    api_key: !secret slack_app_token
+    default_channel: '#general'
+    
+input_boolean:
+  alarm:
+    name: Alarm Status
+    initial: off
+    icon: mdi:alarm
     
 ####################
 ## Binary Sensors ##

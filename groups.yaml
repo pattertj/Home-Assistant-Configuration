@@ -8,6 +8,7 @@ default_view:
   entities:
     - device_tracker.phone_phone
     - device_tracker.brandy
+    - group.alarm
     - group.hallway
     - group.livingroom
     - group.master
@@ -23,10 +24,22 @@ network:
     - group.homeserver  
     - group.desktop  
     - group.wifi 
+    
+cameras:
+  name: Cameras
+  view: yes
+  entities:
+    - camera.living_room
+    - camera.upstairs
 
 #############
 ### Other ###
 #############
+
+alarm:
+  name: Alarm
+  entities: 
+    - input_boolean.alarm
 
 weather:
   name: Weather
@@ -35,13 +48,7 @@ weather:
     - sensor.pws_weather_1d
     - sensor.pws_temp_high_1d_f
     - sensor.pws_precip_1d
-    - sensor.pws_precip_1d_in
-    
-cameras:
-  name: Cameras
-  entities:
-    - camera.living_room
-    - camera.upstairs
+    - sensor.pws_precip_1d_in    
 
 #######################
 ### Network Devices ###

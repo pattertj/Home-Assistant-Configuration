@@ -13,10 +13,12 @@
     zone: zone.home
 - action:
   - alias: ''
-    data: {}
+    data:
+      entity_id: light.porch
     service: light.turn_on
   - delay: 00:05:00
-  - data: {}
+  - data:
+      entity_id: light.porch
     service: light.turn_off
   alias: Turn on the Lights when I get home
   condition: []
@@ -52,7 +54,7 @@
     state: Closed
   - condition: state
     entity_id: sensor.garage_motion
-    state: No Motion
+    state: Clear
   id: '1516566420558'
   trigger:
   - entity_id: sensor.garage_door
@@ -64,9 +66,9 @@
     platform: state
     to: Closed
   - entity_id: sensor.garage_motion
-    from: Motion
+    from: Occupied
     platform: state
-    to: No Motion
+    to: Clear
 - action:
   - data:
       entity_id: switch.light_switch_garage_switch
@@ -87,3 +89,99 @@
     from: No Motion
     platform: state
     to: Motion
+- action:
+  - data:
+      message: Your system has been armed.
+      target:
+      - '#general'
+    service: notify.slack_notifier
+  alias: Arm Alarm
+  condition: []
+  id: '1517092813989'
+  trigger:
+  - entity_id: input_boolean.alarm
+    from: 'off'
+    platform: state
+    to: 'on'
+- action:
+  - data:
+      message: Your system has been disarmed.
+      target:
+      - '#general'
+    service: notify.slack_notifier
+  alias: Disarm Alarm
+  condition: []
+  id: '1517092895408'
+  trigger:
+  - entity_id: input_boolean.alarm
+    from: 'on'
+    platform: state
+    to: 'off'
+- action:
+  - data:
+      message: 'ALARM TRIGGERED: Garage Side Door Opened!'
+      target:
+      - '#general'
+    service: notify.slack_notifier
+  alias: 'ALARM: Garage Side Door'
+  condition:
+  - condition: state
+    entity_id: input_boolean.alarm
+    state: 'on'
+  id: '1517093518812'
+  trigger:
+  - entity_id: sensor.garage_door
+    from: Closed
+    platform: state
+    to: Open
+- action:
+  - data:
+      message: 'ALARM TRIGGERED: Garage Door Opened!'
+      target:
+      - '#general'
+    service: notify.slack_notifier
+  alias: 'ALARM: Garage Door'
+  condition:
+  - condition: state
+    entity_id: input_boolean.alarm
+    state: 'on'
+  id: '1517093518813'
+  trigger:
+  - entity_id: sensor.garage_door_tilt
+    from: Closed
+    platform: state
+    to: Open
+- action:
+  - data:
+      message: 'ALARM TRIGGERED: Living Room Motion Detected! https://5329drew.duckdns.org:8123/states/group.cameras'
+      target:
+      - '#general'
+    service: notify.slack_notifier
+  alias: 'ALARM: Living Room Motion Detector'
+  condition:
+  - condition: state
+    entity_id: input_boolean.alarm
+    state: 'on'
+  id: '1517093518814'
+  trigger:
+  - entity_id: binary_sensor.living_room_occupancy
+    from: 'off'
+    platform: state
+    to: 'on'
+- action:
+  - data:
+      message: 'ALARM TRIGGERED: Living Room Motion Detected!'
+      target:
+      - '#general'
+    service: notify.slack_notifier
+  alias: 'ALARM: Living Room Motion Detector'
+  condition:
+  - condition: state
+    entity_id: input_boolean.alarm
+    state: 'on'
+  id: '1517093518814'
+  trigger:
+  - entity_id: sensor.garage_motion
+    from: Clear
+    platform: state
+    to: Occupied
