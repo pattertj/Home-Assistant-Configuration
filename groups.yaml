@@ -21,6 +21,7 @@ network:
   name: Network
   view: yes
   entities:
+    - group.pihole
     - group.homeserver  
     - group.desktop  
     - group.wifi 
@@ -32,6 +33,29 @@ cameras:
     - camera.living_room
     - camera.upstairs
 
+octoprint:
+  name: Octoprint
+  view: yes
+  entities: 
+    - group.octoprintjob
+    - camera.3d_printer
+    - switch.3d_printer
+  
+#################
+### Octoprint ###    
+#################
+
+octoprintjob:
+  name: Job Status
+  entities:
+    - weblink.octopi
+    - binary_sensor.octoprint_printing
+    - binary_sensor.octoprint_printing_error    
+    - sensor.octoprint_job_percentage
+    - sensor.octoprint_actual_bed_temp
+    - sensor.octoprint_actual_tool0_temp
+    - sensor.octoprint_current_state
+    
 #############
 ### Other ###
 #############
@@ -76,6 +100,19 @@ wifi:
     - sensor.google_wifi_status
     - sensor.google_wifi_uptime
     - sensor.google_wifi_new_version
+    
+pihole:
+  name: Pi Hole
+  entities:
+    - weblink.pi_hole
+    - sensor.pihole_ads_blocked_today
+    - sensor.pihole_ads_percentage_blocked_today
+    - sensor.pihole_dns_queries_cached
+    - sensor.pihole_dns_queries_forwarded
+    - sensor.pihole_dns_queries_today
+    - sensor.pihole_dns_unique_clients
+    - sensor.pihole_dns_unique_domains
+    - sensor.pihole_domains_blocked
 
 #############
 ### Rooms ###

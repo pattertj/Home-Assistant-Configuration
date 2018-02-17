@@ -185,3 +185,28 @@
     from: Clear
     platform: state
     to: Occupied
+- action:
+  - data:
+      entity_id: switch.3d_printer
+    service: switch.turn_off
+  alias: Turn off 3D Printer when complete
+  condition: []
+  id: '1517662945541'
+  trigger:
+  - entity_id: sensor.octoprint_job_percentage
+    platform: state
+    to: '100'
+- action:
+  - data:
+      message: 'ERROR: Print Error Detected! https://5329drew.duckdns.org:8123/states/group.octoprint'
+      target:
+      - '#3dprints'
+    service: notify.slack_notifier
+  alias: 'ALERT: Printing Error'
+  condition: []
+  id: '1517696090559'
+  trigger:
+  - entity_id: binary_sensor.octoprint_printing_error
+    from: 'Off'
+    platform: state
+    to: 'On'

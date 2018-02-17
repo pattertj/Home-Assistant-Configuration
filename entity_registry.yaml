@@ -1,0 +1,66 @@
+switch.wemo_mini:
+  platform: wemo
+  unique_id: 221729K0103781
+binary_sensor.door_sensor_garage_sensor:
+  platform: zwave
+  unique_id: 3-72057594093240320
+sensor.door_sensor_garage_alarm_type:
+  platform: zwave
+  unique_id: 3-72057594094305281
+sensor.door_sensor_garage_alarm_level:
+  platform: zwave
+  unique_id: 3-72057594094305297
+sensor.door_sensor_garage_sourcenodeid:
+  platform: zwave
+  unique_id: 3-72057594094305313
+sensor.door_sensor_garage_access_control:
+  platform: zwave
+  unique_id: 3-72057594094305425
+sensor.door_sensor_garage_burglar:
+  platform: zwave
+  unique_id: 3-72057594094305441
+binary_sensor.motion_sensor_garage_sensor:
+  platform: zwave
+  unique_id: 4-72057594110017536
+sensor.motion_sensor_garage_alarm_type:
+  platform: zwave
+  unique_id: 4-72057594111082497
+sensor.motion_sensor_garage_alarm_level:
+  platform: zwave
+  unique_id: 4-72057594111082513
+sensor.motion_sensor_garage_sourcenodeid:
+  platform: zwave
+  unique_id: 4-72057594111082529
+sensor.motion_sensor_garage_burglar:
+  platform: zwave
+  unique_id: 4-72057594111082657
+binary_sensor.tilt_sensor_garage_sensor:
+  platform: zwave
+  unique_id: 5-72057594126794752
+sensor.tilt_sensor_garage_alarm_type:
+  platform: zwave
+  unique_id: 5-72057594127859713
+sensor.tilt_sensor_garage_alarm_level:
+  platform: zwave
+  unique_id: 5-72057594127859729
+sensor.tilt_sensor_garage_sourcenodeid:
+  platform: zwave
+  unique_id: 5-72057594127859745
+sensor.tilt_sensor_garage_access_control:
+  platform: zwave
+  unique_id: 5-72057594127859857
+sensor.tilt_sensor_garage_burglar:
+  platform: zwave
+  unique_id: 5-72057594127859873
+sensor.tilt_sensor_garage_power_management:
+  platform: zwave
+  unique_id: 5-72057594127859889
+switch.light_switch_garage_switch:
+  platform: zwave
+  unique_id: 6-72057594143391744
+light.porch_light:
+  platform: hue
+  unique_id: 00:17:88:01:02:6d:74:e2-0b
+light.stoop:
+  platform: hue
+  unique_id: 00:17:88:01:02:7d:61:83-0b

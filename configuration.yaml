@@ -76,9 +76,18 @@ camera:
     mjpeg_url: !secret cam3_video
     still_image_url: !secret cam3_image
     name: Living Room
+  - platform: mjpeg
+    mjpeg_url: !secret cam4_video
+    still_image_url: !secret cam4_image
+    name: 3D Printer
 
 tts:
   - platform: google
+  
+switch:
+  - platform: tplink
+    host: !secret switch_3d_printer
+    name: 3D Printer
 
 group: !include groups.yaml
 automation: !include automations.yaml
@@ -98,6 +107,23 @@ zone:
     icon: mdi:home
     
 sensor:
+  - platform: pi_hole
+    host: !secret pihole_ip
+    monitored_conditions:
+      - ads_blocked_today
+      - ads_percentage_today
+      - dns_queries_today
+      - domains_being_blocked
+      - queries_cached
+      - queries_forwarded
+      - unique_clients
+      - unique_domains
+  - platform: octoprint
+    name: OctoPrint
+    monitored_conditions:
+      - Current State
+      - Temperatures
+      - Job Percentage
   - platform: wunderground
     api_key: !secret wunderground_api_key
     monitored_conditions:
@@ -143,7 +169,7 @@ sensor:
       garage_motion:
         friendly_name: "Garage Motion"
         value_template: '{% if is_state("sensor.motion_sensor_garage_burglar", "0") %}Clear{%-elif is_state("sensor.motion_sensor_garage_burglar", "254") %}Clear{% else %}Occupied{% endif %}'
-         
+          
 wemo:
 
 notify:
@@ -158,11 +184,31 @@ input_boolean:
     initial: off
     icon: mdi:alarm
     
+octoprint:
+  host: !secret octoprint_ip
+  api_key: !secret octoprint_api_key
+  bed: true
+  number_of_tools: 1
+
+weblink:
+  entities:
+    - name: Octopi
+      url: http://192.168.86.131/
+      icon: mdi:printer-3d
+    - name: Pi Hole
+      url: http://pi-hole.local/admin/index.php
+      icon: mdi:security-network
+  
+    
 ####################
 ## Binary Sensors ##
 ####################
 
 binary_sensor:
+  - platform: octoprint
+    monitored_conditions:
+      - Printing
+      - Printing Error
   - platform: template
     sensors:
       sun_up:

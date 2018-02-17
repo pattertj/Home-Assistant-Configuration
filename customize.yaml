@@ -22,3 +22,25 @@ sensor.garage_door_tilt:
   friendly_name: Garage Door Tilt
 sensor.garage_door_motion:
   friendly_name: Garage Motion
+sensor.octoprint_current_state:
+  icon: mdi:printer-3d
+sensor.octoprint_actual_bed_temp:
+  friendly_name: Actual Bed Temp
+sensor.octoprint_actual_tool0_temp:
+  friendly_name: Actual Tool Temp
+sensor.pihole_ads_blocked_today:
+  friendly_name: Ads Blocked Today
+sensor.pihole_ads_percentage_blocked_today:
+  friendly_name: Ads Percentage Blocked Today
+sensor.pihole_dns_queries_cached:
+  friendly_name: DNS Queries Cached
+sensor.pihole_dns_queries_forwarded:
+  friendly_name: DNS Queries Forwarded
+sensor.pihole_dns_queries_today:
+  friendly_name: DNS Queries Today
+sensor.pihole_dns_unique_clients:
+  friendly_name: DNS Unique Clients
+sensor.pihole_dns_unique_domains:
+  friendly_name: DNS Unique Domains
+sensor.pihole_domains_blocked:
+  friendly_name: Domains Blocked
